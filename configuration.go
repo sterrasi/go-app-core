@@ -1,4 +1,4 @@
-package app_cfg
+package core
 
 type Configuration struct {
 	profiles []string

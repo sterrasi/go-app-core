@@ -1,4 +1,4 @@
-package app_cfg
+package core
 
 import "strings"
 

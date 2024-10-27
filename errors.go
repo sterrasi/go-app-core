@@ -1,4 +1,4 @@
-package app_cfg
+package core
 
 const UnknownErrorCode ErrorCode = 0
 
