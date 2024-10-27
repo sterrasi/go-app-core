@@ -1,0 +1,44 @@
+version: '3'
+
+env:
+  LIB: dist/go-app-cfg
+
+tasks:
+
+  default:
+    desc: Production build
+    aliases: [bp]
+    cmds:
+      - task: clean
+      - task: dep-check
+      - task: test-cover
+      - go build -o ${LIB} -ldflags="-s -w" ./
+
+  build:
+    desc: builds the library to ${LIB}
+    aliases: [b]
+    cmds:
+      - go build -o ${LIB} ./
+
+  test:
+    desc: runs tests
+    aliases: [t]
+    cmds:
+      - go test ./...
+
+  test-cover:
+    desc: runs tests with coverage
+    aliases: [tc]
+    cmds:
+      - go test -cover ./...
+
+  dep-check:
+    desc: Runs tidy and verify on the project
+    cmds:
+      - go mod tidy
+      - go mod verify
+
+  clean:
+    desc: Cleans the entire go build cache
+    cmds:
+      - go clean -cache;
