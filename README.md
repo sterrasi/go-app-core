@@ -5,7 +5,7 @@
 - errors with metadata
 - configuration profiles (to load profile specific configuration)
 - command line parser
-- toml, json, or yaml support
+- toml support
 - string interpolation support
 - Configuration overrides dictated by profile values 
 - Configuration struct
