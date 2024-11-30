@@ -73,3 +73,14 @@ func IsWithinRange(v1 any, v2 any, rangeVal float64) bool {
 	}
 	return math.Abs(*f1-*f2) < rangeVal
 }
+
+type Tuple[T, U any] struct {
+	First  T
+	Second U
+}
+
+type Triple[T, U, V any] struct {
+	First  T
+	Second U
+	Third  V
+}
