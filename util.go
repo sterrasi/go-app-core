@@ -1,16 +1,18 @@
 package core
 
 import (
-	"golang.org/x/exp/constraints"
 	"math"
 	"strings"
+
+	"golang.org/x/exp/constraints"
 )
 
 type Number interface {
 	constraints.Integer | constraints.Float
 }
 
-// Normalize will convert the given string to lower case and trim it's whitespace.
+// Normalize will convert the given string to lower case and trim any leading
+// and trailing whitespace.
 func Normalize(value string) string {
 	if value == "" {
 		return ""
@@ -26,41 +28,6 @@ func GetMapValues[K comparable, V comparable](m map[K]V) []V {
 		r = append(r, val)
 	}
 	return r
-}
-
-// ToFloat64 casts the given value to a float64 and returns a pointer to it. If the value is not numeric then
-// nil is returned
-func ToFloat64(value any) *float64 {
-	var result float64
-
-	switch value.(type) {
-	case float32:
-		result = float64(value.(float32))
-	case float64:
-		result = value.(float64)
-	case int8:
-		result = float64(value.(int8))
-	case int16:
-		result = float64(value.(int16))
-	case int32:
-		result = float64(value.(int32))
-	case int64:
-		result = float64(value.(int64))
-	case uint8:
-		result = float64(value.(uint8))
-	case uint16:
-		result = float64(value.(uint16))
-	case uint32:
-		result = float64(value.(uint32))
-	case uint64:
-		result = float64(value.(uint64))
-	case uintptr:
-		result = float64(value.(uintptr))
-
-	default:
-		return nil
-	}
-	return &result
 }
 
 // IsWithinRange returns true if the two values fall within the given rangeVal
@@ -83,4 +50,39 @@ type Triple[T, U, V any] struct {
 	First  T
 	Second U
 	Third  V
+}
+
+// ToFloat64 casts the given value to a float64 and returns a pointer to it. If the value is not numeric then
+// nil is returned
+func ToFloat64(value any) *float64 {
+	var result float64
+
+	switch v := value.(type) {
+	case float32:
+		result = float64(v)
+	case float64:
+		result = v
+	case int8:
+		result = float64(v)
+	case int16:
+		result = float64(v)
+	case int32:
+		result = float64(v)
+	case int64:
+		result = float64(v)
+	case uint8:
+		result = float64(v)
+	case uint16:
+		result = float64(v)
+	case uint32:
+		result = float64(v)
+	case uint64:
+		result = float64(v)
+	case uintptr:
+		result = float64(v)
+
+	default:
+		return nil
+	}
+	return &result
 }

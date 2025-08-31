@@ -74,7 +74,7 @@ func NewIllegalStateError(format string, args ...any) Error {
 	return BuildIllegalStateError().Msgf(format, args...)
 }
 
-// NotFoundErrorCode relates to a client level error where an entity is referenced by the client that does not exist
+// NotFoundErrorCode related to an error where a referenced resource does not exist
 const NotFoundErrorCode ErrorCode = 7
 const NotFoundErrorCodeValue string = "not-found"
 
@@ -85,8 +85,8 @@ func NewNotFoundError(format string, args ...any) Error {
 	return BuildNotFoundError().Msgf(format, args...)
 }
 
-// AlreadyExistsErrorCode relates to a client level error where the result of an operation is to produce a new entity
-// but the entity already exists in the system
+// AlreadyExistsErrorCode related to an operation that tries to create an entity that
+// already exists in the system
 const AlreadyExistsErrorCode ErrorCode = 8
 const AlreadyExistsErrorCodeValue string = "already-exists"
 
@@ -97,7 +97,7 @@ func NewAlreadyExistsError(format string, args ...any) Error {
 	return BuildAlreadyExistsError().Msgf(format, args...)
 }
 
-// IOErrorCode relates to an error while trying to access a resource like a file
+// IOErrorCode relates to an error while trying to interface with a stream of bytes
 const IOErrorCode ErrorCode = 9
 const IOErrorCodeValue string = "io"
 

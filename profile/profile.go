@@ -1,10 +1,8 @@
 package profile
 
 import (
-	"errors"
-	"fmt"
 	"os"
-	"sterrasi/go-app-core"
+	core "sterrasi/go-app-core"
 )
 
 const profileEnvVar = "ACTIVE_PROFILE"
@@ -93,26 +91,26 @@ func fetchProfile(defaultProfile Profile) (*Profile, error) {
 	}
 
 	// profile was not recognized
-	msg := fmt.Sprintf("invalid active profile value '%s'", os.Getenv(profileEnvVar))
-	return nil, errors.New(msg)
+	return nil, core.BuildIllegalArgumentError().Context("fetchProfile").
+		Msgf("invalid active profile value '%s'", os.Getenv(profileEnvVar))
 }
 
 // parseProfile will parse the provided string value into a Profile enum
 func parseProfile(value string) (*Profile, core.Error) {
 	nml := core.Normalize(value)
 	if nml == "" {
-		return nil, core.BuildIllegalArgumentError().Context("ParseProfile").
+		return nil, core.BuildIllegalArgumentError().Context("parseProfile").
 			Msg("Cannot parse blank string into a Profile")
 	}
 
 	// resolve the Profile value against the array of known profiles
-	for _, ft := range allProfiles {
-		if ft.String() == nml {
-			return &ft, nil
+	for _, pf := range allProfiles {
+		if pf.String() == nml {
+			return &pf, nil
 		}
 	}
 
 	// profile was not recognized
-	return nil, core.BuildIllegalArgumentError().Context("ParseProfile").
+	return nil, core.BuildIllegalArgumentError().Context("parseProfile").
 		Msgf("invalid active profile value '%s'", value)
 }

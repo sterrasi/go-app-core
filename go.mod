@@ -1,10 +1,10 @@
 module sterrasi/go-app-core
 
-go 1.22.2
+go 1.24.4
 
 require (
-	github.com/stretchr/testify v1.9.0
-	golang.org/x/exp v0.0.0-20241009180824-f66d83c29e7c
+	github.com/stretchr/testify v1.10.0
+	golang.org/x/exp v0.0.0-20250620022241-b7579e27df2b
 )
 
 require (

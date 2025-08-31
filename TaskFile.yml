@@ -1,7 +1,7 @@
 version: '3'
 
 env:
-  LIB: dist/go-app-cfg
+  LIB: dist/go-app-core
 
 tasks:
 

@@ -26,6 +26,8 @@ type ErrorImpl struct {
 	message   string
 }
 
+var _ Error = (*ErrorImpl)(nil)
+
 // Error returns a descriptor string that encapsulates all the error's metadata. This
 // satisfies the 'error' interface
 func (e *ErrorImpl) Error() string {
